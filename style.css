@@ -1,0 +1,358 @@
+body{
+        height:100vh;
+        width:100vw;
+        box-sizing: border-box;
+        overflow-x: hidden;
+        padding: 15px;
+}
+
+.header{
+    margin: 10px 0px;
+}
+
+/* 1.  */
+[data-tooltip]{
+    position: relative;
+}
+
+[data-tooltip]:hover::after{
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 100%;
+    left:0;
+    right:0;
+    margin-top: 5px;
+    background-color: blueviolet;
+    color:cornsilk;
+}
+
+
+/* 2.  */
+.btn{
+    text-decoration: none;
+    border: 2px solid #764abc;
+    color: #764abc;
+    padding: 10px 20px;
+    border-radius: 25px;
+    position: relative;
+    overflow: hidden;
+    transition: all 1s;
+    z-index: 1;
+}
+
+.btn:hover{
+    cursor: pointer;
+}
+
+.btn::before{
+    content:"";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: #764abc;
+    transition: all 1s;
+    transform: translateX(-100%);
+    z-index: -1;
+}
+
+.btn:hover::before{
+    transform: translateX(0%);
+}
+
+.btn:hover{
+    color: aliceblue;
+}
+
+
+/* 3.  */
+.new_div_2{
+    height: 100px;
+    width: 100px;
+    background-color: #764abc;
+    animation: animate 5s ease-in-out alternate infinite; 
+    /* transition: all 1s; */
+}
+
+@keyframes animate {
+    0%{
+        transform: translateX(0px) rotate(360deg);
+    }
+    50%{
+        transform: translateX(500px) rotate(180deg);
+    }
+    100%{
+        transform: translateX(0px) rotate(360deg);
+    }
+}
+
+/* 4.  */
+.profile{
+    height:400px;
+    width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background: url("https://www.dropbox.com/s/d5cvnph0y2a4tk7/image.jpg?raw=1") no-repeat center/cover;
+    display: grid;
+    place-items: center;
+    position: relative;
+    transition: all 1s;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.info h2, .info p{
+    color: #fff;
+    opacity: 0;
+    transition: all 1s;
+}
+
+.profile:hover{
+    cursor: pointer;
+}
+
+.profile:hover .info h2,
+.profile:hover .info p {
+  opacity: 1;
+}
+
+.info::before{
+    content: "";
+    height: 100%;
+    width: 100%;
+    background-color: #764abc;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: skew(30deg) translateX(90%);
+    opacity: 0.3;
+    transition: all 1s ease;
+    z-index: -1;
+}
+
+.info::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #764abc;
+    transform: skew(-30deg) translateX(90%);
+    opacity: 0.3;
+    transition: all 1s ease;
+    z-index: -1;
+  }
+
+  .profile::before{
+    content: "";
+    height: 100%;
+    width: 100%;
+    background-color: #764abc;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: skew(30deg) translateX(100%);
+    opacity: 0.3;
+    transition: all 1s ease;
+    z-index: -1;
+}
+
+.profile::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #764abc;
+    transform: skew(-30deg) translateX(100%);
+    opacity: 0.3;
+    transition: all 1s ease;
+    z-index: -1;
+  }
+
+
+.profile:hover .info::before {
+    transform: skew(30deg) translateX(40%);
+  }
+  
+.profile:hover .info::after {
+    transform: skew(-30deg) translateX(50%);
+    opacity: 0.7;
+  }
+
+/* 5.  */
+.new_div_3{
+    width: 300px;
+    height: 300px;
+    box-shadow: 16px 14px 20px #0000008c;
+    margin-top: 10px;
+    border-radius: 10px;
+    position: relative;
+    margin-left: 20px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.new_div_3::before{
+   content: "";
+   background-image: conic-gradient(
+     from 90deg, red 20deg,white 70deg
+   );
+   height: 150%;
+   width: 150%;
+   position: absolute;
+   z-index: -1;
+   animation: rotate 3s linear infinite;
+}
+
+.new_div_3::after{
+    content: "";
+    height: 98%;
+    width: 98%;
+    background-color: #000;
+    position: absolute;
+    border-radius: 10px;
+}
+
+@keyframes rotate {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+/* 6.  */
+.skeleton{
+    opacity: 0.7;
+    animation: skeleton-loading 1s linear infinite alternate;
+}
+
+.skeleton-text{
+    width: 100%;
+    height: .5rem;
+    margin: .2rem;
+}
+
+.skeleton-text:last-child{
+    width: 75%;
+}
+
+@keyframes skeleton-loading {
+    0%{
+      background-color: hsl(200,20%,70%);
+    }
+    100%{
+      background-color: hsl(80, 20%, 7%);
+    }
+}
+
+
+.grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    padding: 1rem;
+  }
+  
+  .card {
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    padding: 16px;
+    border-radius: 4px;
+  }
+  
+  .header {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .header-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 100%;
+    margin-right: 1rem;
+    flex-shrink: 0;
+  }
+  
+  .title {
+    font-weight: bold;
+    font-size: 1.25rem;
+    text-transform: capitalize;
+    word-wrap: none;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    flex-grow: 1;
+  }
+
+
+  /* 7.  */
+  .outer{
+    height: 400px;
+    width: 85%;
+    border-radius: 15px;
+    background-color: cornsilk;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 0px auto;
+  }
+
+  .inner{
+    height: 300px;
+    width: 75%;
+    border-radius: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  .animated_div{
+    height: 100px;
+    width: 150px;
+    border-radius: inherit;
+    animation: continuousSlide 4s linear infinite;
+    position: absolute;
+    left: 0%;
+    opacity: 0;
+  }
+
+  .animated_div:nth-child(1){
+    background-color: #764abc;
+    animation-delay: 0s;
+  }
+
+  .animated_div:nth-child(2){
+    background-color: orangered;
+    animation-delay: 0.75s;
+  }
+
+  .animated_div:nth-child(3){
+    background-color: yellowgreen;
+    animation-delay: 1.5s;
+  }
+
+
+  @keyframes continuousSlide {
+    0%{
+       left:-150px;
+       opacity: 1;
+    }
+    100%{
+        left: 100%;
+        opacity: 1;
+    }
+  }

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>My web page</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h4 class='header'>1. Used pseudo elements to develop a tooltip on hover</h4>
+  <!--1 -->
+  <label class="required">Name</label>
+  <input type="text" name="name" id="name" placeholder="Name" />
+  <button data-tooltip="Tooltip">Submit</button>
+
+  <h4 class='header'>2. Used pseudo elements for animating button on Hover</h4>
+  <div class="new_div">
+    <button class="btn">Hover Me</button>
+  </div>
+
+  <h4 class='header'>3. Sliding and rotating the element for animation</h4>
+  <div class="new_div_2">
+  </div>
+
+  <h4 class='header'>4. Used pseudo elements to develop an animation over hovering the div container</h4>
+  <div class="profile">
+    <div class="info">
+      <h2>Devansh Shah</h2>
+      <p>Software Developer</p>
+    </div>
+  </div>
+
+  <h4 class='header'>5. Snake Animation</h4>
+  <div class="new_div_3">
+  </div>
+  
+  <h4 class='header'>6. Skeleton Animation</h4>
+  <div class="grid"></div>
+
+  <template id='card-template'>
+    <div class='card'>
+      <div class='header'>
+        <img class='header-img skeleton' src="https://source.unsplash.com/100x100/?nature" />
+        <div class="title" data-title>
+          <div class="skeleton skeleton-text"></div>
+          <div class="skeleton skeleton-text"></div>
+        </div>
+      </div>
+      <div data-body>
+        <div class="skeleton skeleton-text"></div>
+        <div class="skeleton skeleton-text"></div>
+        <div class="skeleton skeleton-text"></div>
+        <div class="skeleton skeleton-text"></div>
+      </div>
+    </div>
+  </template>
+
+  <h4 class='header'>7. Animating the elements to move from left to right in a sequence infinitely using nth-child property</h4>
+   <div class='outer'>
+     <div class='inner'>
+      <div class='animated_div'>
+      </div>
+      <div class='animated_div'>
+      </div>
+      <div class='animated_div'>
+      </div>
+     </div>
+   </div>
+
+
+
+</body>
+
+<script>
+  const template = document.getElementById('card-template');
+  const grid = document.querySelector('.grid');
+
+  //run a loop and append some card templates
+  for (let i = 0; i < 10; i++) {
+    const clone = template.content.cloneNode(true);
+    grid.append(clone);
+  }
+  
+  //fetching posts
+  function fetchPosts(){
+    fetch("https://jsonplaceholder.typicode.com/posts")
+      .then(res => res.json())
+      .then(posts => {
+        grid.innerHTML = ''
+        posts.slice(0,10).forEach(post => {
+          const div = template.content.cloneNode(true);
+          div.querySelector('[data-title]').textContent = post.title;
+          div.querySelector('[data-body]').textContent = post.body;
+          grid.append(div);
+        })
+    }).catch(err => console.log("error : ",err));
+  }
+  //fetching posts from an API to perform skeleton animation
+  fetchPosts();
+   
+</script>
+
+</html>
